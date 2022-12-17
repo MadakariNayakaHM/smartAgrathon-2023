@@ -126,3 +126,41 @@ exports.dashboard= async(req,res,next)=>
         console.log(e)
     }
 }
+exports.dashboard2= async(req,res,next)=>
+{
+    try{
+        const idUser = jwt.verify(req.cookies.jwt, process.env.JWT_SECRET, (err, decoded) => { return decoded.id });
+        const nAnalyst= await User.countDocuments({roles:"analyst"})
+        const nDealers= await User.countDocuments({roles:"dealer"})
+        const nFarmers= await User.countDocuments({roles:"farmer"})
+        const user= await User.findById(idUser);
+        const analyst= await Analyst.find();
+        // console.log(user)
+        // console.log(analyst)
+        const dealers=await Dealers.find();
+        let noOfQueries=0;
+        let noOfResponse=0;
+        let amount=0;
+        for(i=0;i<dealers.length;i++)
+        {
+            if(dealers[i].to.phone===user.phone)
+            {
+                noOfQueries++;
+            }
+            if(dealers[i].to.phone===user.phone && analyst.Accept==1)
+            {
+                noOfResponse++;
+            }
+            if(dealers[i].to.phone===user.phone && analyst.Accept==1)
+            {
+                amount+=parseInt(dealers[i].expectedPrice)
+            }
+
+        }
+
+        res.status(200).render('dashboard2',{user, analyst, dealers, nAnalyst , nDealers, nFarmers,noOfQueries,noOfResponse,nFarmers,amount})
+    }catch(e)
+    {
+        console.log(e)
+    }
+}

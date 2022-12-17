@@ -1,0 +1,69 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(http-equiv='X-UA-Compatible' content='IE=edge')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  link(rel='stylesheet' href='/css/farmdash.css')
+  title Dealers
+.side-menu
+  .brand-name
+    h1(style='color: aqua;') DEALER
+  ul
+    a(href='/')
+      span Home
+    a(href='/me')
+      span profile
+  
+.container9
+  .header
+    .nav
+      .search
+        input(type='text' placeholder='Search..')
+      .user
+        a.btn(href='#') Add New
+        .img-case
+  .content9
+    .cards
+      .card(style='width: 20rem;')
+        .box
+          h1=nAnalyst
+          h3 Traders
+      .card(style='width: 20rem;')
+        .box
+          h1=`Rs ${amount}`
+          h3 Total sales
+        .icon-case
+      .card(style='width: 20rem;')
+        .box
+          h1=nFarmers
+          h3 farmers
+        .icon-case
+      .card(style='width: 20rem;')
+        .box
+          h1=noOfResponse
+          h3 Responded
+      .card(style='width: 20rem;')
+        .box
+          h1=noOfQueries
+          h3 Requests
+    .content-2
+      .recent-payments
+        .title
+          h2 Recent Payments
+          a.btn1(href='#') View All
+        table
+          tr
+            th Name
+            th State
+            th Amount
+            th Bill
+          each d in dealers 
+              tr
+                td=d.from.name
+                td=d.place
+                td=d.expectedPrice
+                td
+                a.btn1(href='#') View
+         
+
+          

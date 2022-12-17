@@ -13,4 +13,5 @@ Router.route('/answerQuery/:reqId').get(authController.protect,authController.ri
 Router.route('/consultDealer/:delId').get(authController.protect,authController.ristrictTo('farmer'),viewsController.consultDealer);
 Router.route('/acceptDeal/:dealId').get(authController.protect,authController.ristrictTo('dealer'),viewsController.acceptDeal);
 Router.route('/dashboard').get(authController.protect, viewsController.dashboard);
+Router.route('/dashboard2').get(authController.protect, viewsController.dashboard2);
 module.exports=Router

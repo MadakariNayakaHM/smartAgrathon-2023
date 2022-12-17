@@ -9,12 +9,9 @@ head
   .brand-name
     h1(style='color: aqua;') FARMER
   ul.farm
-    a(href='#') Home
-    a(href='#') Home1
-    a(href='#') Home2
-    a(href='#') Home3
-    a(href='#') Home4
-    a(href='#') Home5
+    a(href='/') Home
+    a(href='/me') profile
+
     //
       <li><img src="dashboard (2).png" alt="">&nbsp; <span>Dashboard</span> </li>
       <li><img src="reading-book (1).png" alt="">&nbsp;<span>Farmers</span> </li>
@@ -89,9 +86,9 @@ head
                 .col-md-4.gradient-custom.text-center.text-white(style='border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;')
                   img.img-fluid.my-5(src='https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp' alt='Avatar' style='width: 80px;')
                   h2 My recent queries
-                  input.input(type='text' placeholder='Name' style='font-size:large;')
-                  input.input(type='text' placeholder='Role' style='font-size:large;')
-                  input.input(type='text' placeholder='Score' style='font-size:large;')
+                  p=`Name : ${user.name}`
+                  p=`Role : ${user.roles}`
+                  p=`Score : ${user.sum}`
                   i.far.fa-edit.mb-5
                 .col-md-8
                   .card-body.p-4

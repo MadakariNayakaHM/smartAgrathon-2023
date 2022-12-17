@@ -8,7 +8,10 @@ header.header
         nav.navbar
             a(href='/') home
             a(href='/me') View profile
-            a(href='/dashboard') View Dashboard
+            if(user.roles==="farmer")
+              a(href='/dashboard') View Dashboard
+            if(user.roles==="dealer")
+              a(href='/dashboard2') View Dashboard
             form(class="logout--form")
               input.btn1(type="submit" value="logout" id="logout" style="margin-left:20px;")
             
