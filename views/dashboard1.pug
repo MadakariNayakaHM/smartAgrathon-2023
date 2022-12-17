@@ -1,0 +1,110 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(http-equiv='X-UA-Compatible' content='IE=edge')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  link(rel='stylesheet' href='/css/farmdash.css')
+  title Farmers Dashboard
+.side-menu
+  .brand-name
+    h1(style='color: aqua;') FARMER
+  ul.farm
+    a(href='#') Home
+    a(href='#') Home1
+    a(href='#') Home2
+    a(href='#') Home3
+    a(href='#') Home4
+    a(href='#') Home5
+    //
+      <li><img src="dashboard (2).png" alt="">&nbsp; <span>Dashboard</span> </li>
+      <li><img src="reading-book (1).png" alt="">&nbsp;<span>Farmers</span> </li>
+      <li><img src="teacher2.png" alt="">&nbsp;<span>Traders</span> </li>
+      <li><img src="school.png" alt="">&nbsp;<span>Analyst</span> </li>
+      <li><img src="help-web-button.png" alt="">&nbsp; <span>Home</span></li>
+.container9
+  .header
+    .nav
+      .search
+        input(type='text' placeholder='Search..')
+        // <button type="submit"><img src="search.png" alt=""></button>
+      .user
+        a.btn9(href='#') Add New
+        // <img src="notifications.png" alt="">
+        .img-case
+          // <img src="user.png" alt="">
+  .content9
+    .cards
+      .card
+        .box
+          h1=nDealers
+          h3 Number of dealer
+        .icon-case
+          img(src='students.png' alt='')
+      .card
+        .box
+          h1=nAnalyst
+          h3 number of analyst
+        .icon-case
+          img(src='teachers.png' alt='')
+      .card
+        .box
+          h1=noOfQueries
+          h3 number of queries
+        .icon-case
+          img(src='schools.png' alt='')
+      .card
+        .box
+          h1=noOfResponse
+          h3 Responses
+        .icon-case
+          img(src='income.png' alt='')
+    .content-2
+      .recent-payments
+        .title
+          h2 Recent Payments
+          a.btn9(href='#') View All
+        table
+          tr
+            th Name
+            th Place
+            th Amount
+            th Option
+          tr
+            each d in dealers 
+                    if(d.from.phone=== user.phone && d.Accept==1)
+                        td=d.to.name
+                        td=d.place
+                        td=d.expectedPrice
+                        td
+                            a.btn9(href='#') View
+                
+          
+        
+    section.vh-100(style='background-color: #f4f5f7;height: 120vh;')
+      .container9.py-5.h-100
+        .row.d-flex.justify-content-center.align-items-center.h-100
+          .col.col-lg-6.mb-4.mb-lg-0
+            .card.mb-3(style='border-radius: .5rem;')
+              .row.g-0
+                .col-md-4.gradient-custom.text-center.text-white(style='border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;')
+                  img.img-fluid.my-5(src='https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava1-bg.webp' alt='Avatar' style='width: 80px;')
+                  h2 My recent queries
+                  input.input(type='text' placeholder='Name' style='font-size:large;')
+                  input.input(type='text' placeholder='Role' style='font-size:large;')
+                  input.input(type='text' placeholder='Score' style='font-size:large;')
+                  i.far.fa-edit.mb-5
+                .col-md-8
+                  .card-body.p-4
+                    h4(style='margin-top: 1rem;') Information
+                    hr.mt-0.mb-4
+                    .row.pt-1
+                      each a in analyst
+                        if(a.from.phone===user.phone)
+                            .col-6.mb-3(style='margin-top:2rem; font-size: large;')
+                                h4=a.query
+                                p.text-muted=a.solution
+                                each b in a.cropPhoto
+                                    img(src=`/images/cropPhoto/${b}` alt='no image to display' style='width: 6rem;height:6rem;')
+                        
+                    
+                  
