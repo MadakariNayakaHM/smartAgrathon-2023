@@ -1,0 +1,68 @@
+doctype html
+head
+  include head
+include navbar
+section(style='background-color:black; margin-top: 13rem; margin-bottom: 4rem;')
+      h1.heading
+        span profile
+      .container.py-5
+        .row
+          .col-lg-4
+            .card.mb-4
+              .card-body.text-center
+                img.rounded-circle.img-fluid(src=`/images/userPhotos/${analyst.photo}`, alt='avatar', style='width: 150px;')
+                h5.my-3=analyst.name
+                p.text-muted.mb-1=analyst.roles
+          .col-lg-8(style='margin-top: 5rem;')
+            .card.mb-4
+              .card-body
+                .row
+                  .col-sm-3
+                    p.mb-0 Full Name
+                  .col-sm-9
+                    p.text-muted.mb-0=analyst.name
+                hr
+                .row
+                  .col-sm-3
+                    p.mb-0 Email
+                  .col-sm-9
+                    p.text-muted.mb-0(style='text-transform: lowercase;')=analyst.email
+                hr
+                .row
+                  .col-sm-3
+                    p.mb-0 Phone
+                  .col-sm-9
+                    p.text-muted.mb-0=analyst.phone
+                
+                hr
+                .row
+                  .col-sm-3
+                    p.mb-0 Score
+                  .col-sm-9
+                    p.text-muted.mb-0=analyst.sum
+section#consult.consult
+  .row
+    .image
+      h2(style='margin-top: 3rem; color: rgb(232, 249, 232); font-size: 3rem;margin-bottom: 5rem;')
+        span(style='color: green;') C
+        | ONSULTATION
+      img(src='/images/application/pic-16.jpg' alt='')
+    form(class="form--consultation")
+      span Analyst ID
+      input.box(type='text' required='' placeholder='enter analyst id ' maxlength='50' name='to' id="to" value=`${analyst._id}` readOnly)
+      span Quantity Of Crop in kg
+      input.box(type='text' required='' placeholder='enter quantity of crop' maxlength='50' name='quantity' id="quantity")
+      span Place
+      input.box(type='text' required='' placeholder='enter your city' max='50' min='0' name='place' id="place")
+      span Image Of The Crops
+      input.box(type='file' required='' placeholder='upload the files of crop' id="cropPhoto"  multiple="multiple")
+      span Ask Your Query
+      input.box(type='text' required='' placeholder='enter here..... ' maxlength='50' name='query' id="query")
+      input.btn1(type='submit' value='post')
+include footer
+
+script(src="/js/consultAnalyst.js")
+cript(src='https://code.jquery.com/jquery-3.3.1.slim.min.js' integrity='sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo' crossorigin='anonymous')
+script(src='https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js' integrity='sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1' crossorigin='anonymous')
+script(src='https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js' integrity='sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM' crossorigin='anonymous')
+script(src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js')
