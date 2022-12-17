@@ -1,0 +1,47 @@
+doctype html
+head
+    include head
+include navbar
+// header section ends
+section#answers.answers
+      h1.heading(style='margin-top: 8rem;')
+        | Accept 
+        span Deal
+      #answer.answer
+        h1.heading
+          span Images
+        #images.images
+          each i in deal.cropPhoto
+            
+            img(src=`/images/qualityPhotos/${i}`)
+        h5.heading
+          span Expected price
+        #text.text
+            p(style="text-align:center")=deal.expectedPrice
+        h5.place(style="text-align:center; color:white;")
+          span Place
+        #text.text
+            p(style="text-align:center; color:red;")=deal.place
+section#consult.consult(style='width: 50%; background: rgba(231, 202, 202, 0.136); margin-bottom: 5rem; margin-top: 2rem;')
+  h1.heading(style='margin-top: 5rem;')
+    span Aggrement
+    |  form
+  .row
+    form.aggrement
+      span Aggrement
+      input.box(rows="5" cols="7 " type="text" value=`
+      THIS AGREEMENT made on this day of 2023, between ${deal.to.name}(buyer) and
+      ${deal.from.name} incorporated under the Companies Act, 1956 and having its registered office at
+      (hereinafter referred to as the SELLER, which expression shall, unless it be repugnant to the context or meaning thereof, be deemed to mean and include its successors and assigns) of the ONE PART and PQR (give name and description of the person or legal entity) (hereinafter referred to as the BUYER which expression shall, unless it be repugnant to the context or meaning thereof, be deemed to mean and include its successors and assigns) of the OTHER PART.` readOnly='' required=''  name='text' id='text1')
+      span status
+      input.box(type='number' style='color: black;' required='' placeholder='' max='1' min='0'  name="agreed" id="agreed")
+      input.box(type='text' style='color: black;' required='' value=`${deal._id}` readOnly name="dealId" id="dealId")
+      input.btn1(type='submit' value='ACCEPT DEAL' name='send')
+include footer
+// footer section ends
+// swiper js link
+script(src='https://unpkg.com/swiper@8/swiper-bundle.min.js')
+// custom js file link
+script(src='j/s/script.js')
+script(src='/js/acceptDeal.js')
+script(src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js')
