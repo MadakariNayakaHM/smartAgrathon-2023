@@ -150,3 +150,15 @@ exports.acceptDeal = async (req, res, next) => {
     console.log(e);
   }
 };
+exports.bargainPrice=async (req,res,next)=>
+{
+try{
+  await dealers.findByIdAndUpdate(
+    dealId,
+    { bargain:{bargainPrice:req.body.bargainPrice}},
+    { new: true, runValidators: true }
+  );
+
+}catch(e){console.log("erroe at bargain dealer")
+console.log(e)}
+}

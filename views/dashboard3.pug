@@ -12,7 +12,12 @@ head
     a(href='/') Home
     a(href='/me') profile
 
-   
+    //
+      <li><img src="dashboard (2).png" alt="">&nbsp; <span>Dashboard</span> </li>
+      <li><img src="reading-book (1).png" alt="">&nbsp;<span>Farmers</span> </li>
+      <li><img src="teacher2.png" alt="">&nbsp;<span>Traders</span> </li>
+      <li><img src="school.png" alt="">&nbsp;<span>Analyst</span> </li>
+      <li><img src="help-web-button.png" alt="">&nbsp; <span>Home</span></li>
 .container9
   .header
     .nav
@@ -96,7 +101,7 @@ head
                                 h4=a.query
                                 p.text-muted=a.solution
                                 each b in a.cropPhoto
-                                    img(src=`/images/cropPhotos/${b}` alt='no image to display' style='width: 6rem;height:6rem;')
+                                    img(src=`/images/cropPhoto/${b}` alt='no image to display' style='width: 6rem;height:6rem;')
                         
                     
                   

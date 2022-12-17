@@ -39,6 +39,19 @@ const dealersSchema=mongoose.Schema({
             max:1,
             default:0
         }
+      },
+      bargain:{
+        bargainAgree:{
+          type:String,
+          default:"no bargaining"
+        },
+        status:{type:Number,
+        default:0},
+        bargainedAmount:{
+          type:Number,
+          default:0
+        }
+
       }
       
 

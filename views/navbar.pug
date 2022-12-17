@@ -6,13 +6,22 @@ header.header
           span S
           | LAYERS
         nav.navbar
-            a(href='/') home
-            a(href='/me') View profile
-            if(user.roles==="farmer")
-              a(href='/dashboard') View Dashboard
-            if(user.roles==="dealer")
-              a(href='/dashboard2') View Dashboard
-            form(class="logout--form")
-              input.btn1(type="submit" value="logout" id="logout" style="margin-left:20px;")
+            if(user)
+              a(href='/') home
+              a(href='/me') View profile
+              if(user.roles==="farmer")
+                a(href='/dashboard') view Dashboard
+              if(user.roles==="dealer")
+                a(href='/dashboard2') view Dashboard
+              if(user.roles==="analyst")
+                a(href='/dashboard3') view Dashboard
+              form(class="logout--form")
+                input.btn1(type="submit" value="logout" id="logout" style="margin-left:20px;")
+            else
+              a(href='/') home
+              a(href='/me') View profile
+              form(class="logout--form")
+                input.btn1(type="submit" value="logout" id="logout" style="margin-left:20px;")
+
             
         #menu-btn.fas.fa-bars
