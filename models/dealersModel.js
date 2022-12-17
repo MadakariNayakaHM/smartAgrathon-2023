@@ -51,7 +51,7 @@ dealersSchema.pre(/^find/, function(next) {
   
     this.populate({
       path: 'from',
-      select: 'name photo phone photo phone sum '
+      select: 'name photo phone email sum '
     });
     next();
   });
@@ -60,7 +60,7 @@ dealersSchema.pre(/^find/, function(next) {
   
     this.populate({
       path: 'to',
-      select: 'name photo phone photo phone sum'
+      select: 'name photo phone email sum'
     });
     next();
   });

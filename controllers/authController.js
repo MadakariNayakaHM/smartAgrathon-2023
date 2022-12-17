@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 const { promisify } = require("util");
 const multer = require("multer");
 const sharp = require("sharp");
-const Email=require('../email');
+const sendEmail=require('../email');
 const signToken = (id) => 
 {
   return jwt.sign({ id: id }, process.env.JWT_SECRET, { expiresIn: "30d" });
@@ -43,9 +43,16 @@ exports.signUp = async (req, res, next) =>
     });
 
     const token = signToken(newUser._id);
-      const url=`${req.protocol}://${req.get('host')}/login`
-      await new Email(newUser,url).sendWelcome();
-
+      const url=`${req.protocol}://${req.get('host')}/`
+      const message=`you are added to our family Bug-Slayers click this link for login ${url}`
+    try{
+      await sendEmail({
+      email:newUser.email,
+      subject:`welcome mail from Bug Slayers`,
+      message
+    })} catch(err){console.log("error while sending email")}
+    
+  
     res
       .status(201)
       .json({ message: "success", token, data: { user: newUser } });
@@ -68,6 +75,14 @@ module.exports.login = async (req, res, next) =>
     if (!user || !(await user.correctPassword(password, user.password))) {
       res.status(404).render("error");
     }
+    const url=`${req.protocol}://${req.get('host')}/`
+      const message=`you are added to our family Bug-Slayers click this link for interacion ${url}`
+    try{
+      await sendEmail({
+      email:user.email,
+      subject:`welcome mail from Bug Slayers you are loged in as ${user.name}\n Interact with the farmers , dealers and analyst for more benifits`,
+      message
+    })} catch(err){console.log("error while sending email")}
     if (user) {
       createSendToken(user, res);
       const token = signToken(user._id);

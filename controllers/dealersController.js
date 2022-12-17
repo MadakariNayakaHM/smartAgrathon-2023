@@ -3,6 +3,7 @@ const dealers = require("./../models/dealersModel");
 const jwt = require("jsonwebtoken");
 const multer = require("multer");
 const sharp = require("sharp");
+const sendEmail=require('../email');
 
 const multerStorage = multer.memoryStorage();
 
@@ -66,6 +67,7 @@ exports.createPost = async (req, res, next) => {
       expectedPrice: req.body.expectedPrice,
     });
     const user = await User.findOne({ _id: idUser });
+    const user2=await User.find({_id:req.body.to});
     const dobj = Date.now();
     const date = new Date(dobj).getDate();
     const month = new Date(dobj).getMonth();
@@ -76,6 +78,20 @@ exports.createPost = async (req, res, next) => {
     };
     user.reqAndRes.push(updates);
     user.save();
+    try{
+      await sendEmail({
+      email:user.email,
+      subject:`hi Farmer ${user.name} your post is submitted successfully`,
+      message:` from Bug Slayers you have posted query as  ${user.name} to the dealer ${user2.name}\n please wait for some time until you get responded by the dealer`,
+    })} catch(err){console.log("error while sending email")
+  console.log(err)}
+  
+    try{
+      await sendEmail({
+      email:user2.email,
+      subject:`hi analyst ${user2.name} you have new post notification`,
+      message:`welcome mail from Bug Slayers you have recived deal request as dealer,  ${user2.name} from the farmer ${user.name}\n please reply to the farmer `,
+    })} catch(err){console.log("error while sending email")}
     res.status(200).json({
       status: "success",
       data: createPost,
@@ -113,6 +129,21 @@ exports.acceptDeal = async (req, res, next) => {
       { Accept: 1, qualityCheck: 1 ,aggrement:{text:req.body.text,agreed:req.body.agreed}},
       { new: true, runValidators: true }
     );
+
+    try{
+      await sendEmail({
+      email:user.email,
+      subject:`hi dealer ${user.name}  deal is accepted successfully`,
+      message:` from Bug Slayers you have accepted deal as  ${user.name} of the farmer ${request.from.name}\n Thank you`,
+    })} catch(err){console.log("error while sending email")
+    console.log(err)}
+    
+    try{
+      await sendEmail({
+      email:request.from.email,
+      subject:`hi farmer ${request.from.name} you have new  notification of accepted deal`,
+      message:` from Bug Slayers your deal is accepted to the price: ${request.expectedPrice}   from the dealer ${user.name}\n Thank you`,
+    })} catch(err){console.log("error while sending email"); console.log(err)}
     res.status(200).json({ status: "success" });
   } catch (e) {
     console.log("error at accept deal");

@@ -1,0 +1,28 @@
+{
+  "name": "livingwiththeland",
+  "version": "1.0.0",
+  "description": "\"this is the fullstack web app for farmers to get connected with analysts and buyers\"",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "NODE_ENV=development node server.js",
+    "start:prod": "NODE_ENV=production node server.js"
+  },
+  "author": "Madakari Nayaka H M , Vignesh A M , Sonali Mani , Shristi Purusarthi , Sunil Kumar P",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "html-to-text": "^9.0.3",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.7.3",
+    "multer": "^1.4.5-lts.1",
+    "nodemailer": "^6.8.0",
+    "path": "^0.12.7",
+    "pug": "^3.0.2",
+    "sharp": "^0.31.2",
+    "validator": "^13.7.0"
+  }
+}
