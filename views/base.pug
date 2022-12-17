@@ -1,0 +1,177 @@
+doctype html
+| +
+head
+  include head
+
+include navbar
+
+section#home.home
+  .content
+    h3 no farmers no food
+    p
+      | Lorem ipsum, dolor sit amet consectetur adipisicing elit. Placeat labore, sint cupiditate distinctio tempora reiciendis.
+    a.btn(href='#') Explore More
+  .video-container
+    video#video-slider(src='/images/application/jit1.mp4' loop='' autoplay='' muted='')
+if(user.roles=="farmer")
+  section#analysts.analysts
+    h1.heading
+      | our 
+      span analysts
+    .swiper.analyst-slider
+      .swiper-wrapper
+        each u in users 
+          if(u.roles=="analyst")
+                  .swiper-slide.slide
+                    img(src=`/images/userPhotos/${u.photo}` alt='')
+                    h3=u.name
+                    h4
+                      i.fas.fa-phone(style='font-size: medium; margin-right: 1rem; color: green;')
+                      a(href=`tel:${u.phone}`) Phone Number
+                    h4
+                      i.fas.fa-email(style='font-size: medium; margin-right: 1rem; color: green;')
+                      a(href=`#`)=u.email
+                    a.btn1(href=`/consultAnalyst/${u._id}`) Go For Consultation
+        
+      .swiper-pagination
+  section#analysts.analysts
+    h1.heading
+      | expert 
+      span dealers
+    .swiper.analyst-slider
+      .swiper-wrapper
+        each u in users
+          if(u.roles=="dealer")
+              .swiper-slide.slide
+                img(src=`/images/userPhotos/${u.photo}`  alt='')
+                h3=u.name
+                h4
+                  i.fas.fa-phone(style='font-size: medium; margin-right: 1rem; color: green;')
+                  a(href=`tel:${u.phone}`) Phone Number
+                h4
+                  i.fas.fa-email(style='font-size: medium; margin-right: 1rem; color: green;')
+                  a(href=`#`)=u.email
+                .share
+                  a.btn1(href=`consultDealer/${u._id}`) GO FOR DEAL
+              
+              .swiper-pagination
+
+if(user.roles=="analyst")
+    // home section ends
+    // Analysts section starts
+    section#analysts.analysts
+      h1.heading
+        | received 
+        span applications
+      |  
+      .swiper.analyst-slider
+        .swiper-wrapper
+          each a in analyst
+            if(user.phone==a.to.phone && a.Accept==0)
+                .swiper-slide.slide
+                  img(src=`/images/userPhotos/${a.from.photo}`, alt='')
+                  h3=a.from.name
+                  h4
+                    i.fas.fa-phone(style='font-size: medium; margin-right: 1rem; color: green;')
+                    a(href=`tel:${a.from.phone}`) Phone Number
+                  h4
+                    | Query:
+                    p=a.query
+        
+                  a.btn1(href=`/answerQuery/${a._id}`) Answer Query
+        |  
+        .swiper-pagination
+    // analysts section ends
+    section#analysts.analysts
+      h1.heading
+        | Answered 
+        span query
+      |  
+      .swiper.analyst-slider
+        .swiper-wrapper
+          each a in analyst
+            if(user.phone==a.to.phone && a.Accept==1)
+                .swiper-slide.slide
+                  img(src=`/images/userPhotos/${a.from.photo}`, alt='')
+                  h3=a.from.name
+                  h4
+                    i.fas.fa-phone(style='font-size: medium; margin-right: 1rem; color: green;')
+                    a(href=`tel:${a.from.phone}`) Phone Number
+                  h4
+                    | Query:
+                    p=a.query
+                
+                  a.btn1(href='#') View
+        |  
+        .swiper-pagination
+if(user.roles=="dealer")
+    // home section ends
+    // Analysts section starts
+    section#analysts.analysts
+      h1.heading
+        | received 
+        span applications
+      |  
+      .swiper.analyst-slider
+        .swiper-wrapper
+          each a in dealer
+            if(user.phone==a.to.phone && a.Accept==0)
+                .swiper-slide.slide
+                  img(src=`/images/userPhotos/${a.from.photo}`, alt='')
+                  h3=a.from.name
+                  h4
+                    i.fas.fa-phone(style='font-size: medium; margin-right: 1rem; color: green;')
+                    a(href=`tel:${a.from.phone}`) Phone Number
+                  h4
+                    | Expected price:
+                    p=a.expectedPrice
+        
+                  a.btn1(href=`/acceptDeal/${a._id}`) Accept deal
+        |  
+        .swiper-pagination
+    // analysts section ends
+    section#analysts.analysts
+      h1.heading
+        | Accepted
+        span Deal
+      |  
+      .swiper.analyst-slider
+        .swiper-wrapper
+          each a in dealer
+            if(user.phone==a.to.phone && a.Accept==1)
+                .swiper-slide.slide
+                  img(src=`/images/userPhotos/${a.from.photo}`, alt='')
+                  h3=a.from.name
+                  h4
+                    i.fas.fa-phone(style='font-size: medium; margin-right: 1rem; color: green;')
+                    a(href=`tel:${a.from.phone}`) Phone Number
+                  h4
+                    | expected price
+                    p=a.expectedPrice
+                
+                  a.btn1(href='#') View
+        |  
+        .swiper-pagination
+section#about.about(style='margin-top: 0rem;')
+    h1.heading
+      span about
+      |  us
+    .row
+      .image
+        img(src='/images/application/2jit.jpg' alt='')
+      .content
+        h3 what makes our platform special?
+        p
+          | Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus qui ea ullam, enim tempora ipsum fuga alias quae ratione a officiis id temporibus autem? Quod nemo facilis cupiditate. Ex, vel?
+        p
+          | Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odit amet enim quod veritatis, nihil voluptas culpa! Neque consectetur obcaecati sapiente?
+        a.btn1(href='#') learn more   
+include footer
+// footer section ends
+// swiper js link
+script(src='https://unpkg.com/swiper@8/swiper-bundle.min.js')
+// custom js file link
+script(src='/js/script.js')
+if(user)
+  script(src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js')
+  script(src='/js/logout.js')
