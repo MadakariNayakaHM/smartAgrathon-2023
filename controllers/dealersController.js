@@ -153,6 +153,7 @@ exports.acceptDeal = async (req, res, next) => {
 exports.bargainPrice=async (req,res,next)=>
 {
 try{
+  const dealId=req.body.dealId;
   await dealers.findByIdAndUpdate(
     dealId,
     { bargain:{bargainPrice:req.body.bargainPrice}},
