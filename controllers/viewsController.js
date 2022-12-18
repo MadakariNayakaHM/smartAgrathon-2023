@@ -196,3 +196,16 @@ exports.dashboard3= async(req,res,next)=>
         console.log(e)
     }
 }
+exports.bargain=async (req,res,next)=>
+{
+    try{
+        const dealId=req.params.dealId
+        res.status(200).render('bargain')
+    }catch(e)
+    {
+        
+        console.log("error at bargain view");
+        console.log(e)
+
+    }
+}

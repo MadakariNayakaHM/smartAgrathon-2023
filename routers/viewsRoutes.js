@@ -15,4 +15,5 @@ Router.route('/acceptDeal/:dealId').get(authController.protect,authController.ri
 Router.route('/dashboard').get(authController.protect, viewsController.dashboard);
 Router.route('/dashboard2').get(authController.protect, viewsController.dashboard2);
 Router.route('/dashboard3').get(authController.protect, viewsController.dashboard3);
+Router.route('/bargain/:dealId').get(authController.protect,authController.ristrictTo('dealer'), viewsController.bargain)
 module.exports=Router
